@@ -17,7 +17,6 @@ public class HeartrateRepository {
     // https://github.com/googlesamples
     HeartrateRepository(Application application) {
         HeartrateDatabase db = HeartrateDatabase.getDatabase(application);
-        Log.d("CIS 3334", "Setting up the Dao and  database");
         heartrateDao = db.heartrateDao();
         //allHeartrates = heartrateDao.getAll();
     }
@@ -25,8 +24,9 @@ public class HeartrateRepository {
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     List<Heartrate> getAllHeartrates() {
-        Log.d("CIS 3334", "HeartrateRepository in getAllHeartrates");
-        allHeartrates = heartrateDao.getAll();
+        HeartrateDatabase.databaseWriteExecutor.execute(() -> {
+            allHeartrates = heartrateDao.getAll();
+        });
         return allHeartrates;
     }
 
@@ -35,8 +35,6 @@ public class HeartrateRepository {
     void insert(Heartrate heartrate) {
         HeartrateDatabase.databaseWriteExecutor.execute(() -> {
             heartrateDao.insert(heartrate);
-            Log.d("CIS 3334", "Inserting heartrate into database");
-            Log.d ("CIS 3334", heartrate.toString());
         });
     }
 

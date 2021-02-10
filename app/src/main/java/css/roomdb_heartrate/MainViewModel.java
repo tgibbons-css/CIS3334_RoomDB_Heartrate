@@ -3,10 +3,15 @@ package css.roomdb_heartrate;
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainViewModel extends AndroidViewModel {
 
@@ -17,7 +22,8 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         heartrateRepository = new HeartrateRepository(application);
-        heartrateList = heartrateRepository.getAllHeartrates();
+        List heartrateList = new ArrayList<Heartrate>();
+        //heartrateList = heartrateRepository.getAllHeartrates();
     }
 
     List<Heartrate> getAllHeartrates() {
