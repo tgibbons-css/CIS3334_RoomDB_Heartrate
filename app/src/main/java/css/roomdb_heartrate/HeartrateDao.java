@@ -13,9 +13,6 @@ public interface HeartrateDao {
     @Query("SELECT * FROM Heartrate")
     List<Heartrate> getAll();
 
-    @Query("SELECT * FROM Heartrate WHERE id = :Id")
-    Heartrate getByIds(int Id);
-
     @Insert
     void insert(Heartrate heartrate);
 
@@ -23,5 +20,8 @@ public interface HeartrateDao {
     void delete(Heartrate heartrate);
 
 
+
+    @Query("SELECT * FROM Heartrate WHERE id = :Id")
+    Heartrate getByIds(int Id);
 
 }
