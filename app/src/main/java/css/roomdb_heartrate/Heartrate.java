@@ -43,9 +43,18 @@ public class Heartrate {
         return rangeNames.length-1;                      // this should never happen
     }
 
+    public String getRangeName() {
+        calcHeartRange(age);
+        return rangeNames[range];
+    }
+
+    public String getRangeDescrtiption() {
+        calcHeartRange(age);
+        return rangeDescriptions[range];
+    }
+
     public String toString() {
-        // DEBT -- Needs to return actual heartrate info
-        return "Heartrate data here soon..." ;
+        return "Pulse of " + pulse + " - Cardio level: " + getRangeName();
     }
 
 

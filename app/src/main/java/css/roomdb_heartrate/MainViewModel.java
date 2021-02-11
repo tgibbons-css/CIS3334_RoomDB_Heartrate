@@ -1,11 +1,13 @@
 package css.roomdb_heartrate;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
@@ -17,19 +19,20 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         heartrateRepository = new HeartrateRepository(application);
-        heartrateList = heartrateRepository.getAllHeartrates();
+        heartrateList = new ArrayList<Heartrate>();
+        //heartrateList = heartrateRepository.getAllHeartrates();
     }
 
     List<Heartrate> getAllHeartrates() {
-        return heartrateRepository.getAllHeartrates();
+        heartrateList = heartrateRepository.getAllHeartrates();
+        return heartrateList;
     }
 
     String getHeartratesAsString () {
-        // DEBT - currently returns only first heartrate
-        String retString = "";
+        String retString = "Heart Rates \n";
         heartrateList = heartrateRepository.getAllHeartrates();
         for (Heartrate hr:heartrateList) {
-            retString = retString +  hr.toString();
+            retString = retString +  hr.toString() +"\n";
         }
         return retString;
     }
