@@ -40,4 +40,13 @@ public class HeartrateRepository {
         });
     }
 
+    public Heartrate getHeartrate(Integer position) {
+        Heartrate currentHeartrate = allHeartrates.get(position);
+        return currentHeartrate;
+    }
+
+    public Integer getNumberRates() {
+        return allHeartrates.size();
+    }
+
 }

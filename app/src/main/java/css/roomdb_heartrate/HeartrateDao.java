@@ -19,8 +19,6 @@ public interface HeartrateDao {
     @Delete
     void delete(Heartrate heartrate);
 
-
-
     @Query("SELECT * FROM Heartrate WHERE id = :Id")
     Heartrate getByIds(int Id);
 
